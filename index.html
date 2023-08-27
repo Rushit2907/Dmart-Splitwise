@@ -4,17 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-    <title>Dynamic Textboxes</title>
+    <title>Dmart SplitWise</title>
 </head>
 <body>
+    <h1>Dmart SplitWise</h1>
     <div>
         <label for="numPersons">Number of Persons:</label>
         <input type="number" id="numPersons" min="0">
         <button id="createBtn">Create List</button>
-        <div id="textboxContainer"></div>
-        <br><br>
-        <p id="listPersonItems"></p>
     </div>
+    <div id="textboxContainer"></div>
+    <h3>Common Items: </h3>
+    <div id="commonItemsContainer">
+        <div id="commonItemsPersonsContainer"></div>
+        <div id="commonItemsPriceContainer"></div>
+    </div>
+    <p id="listPersonItems"></p>
     <script src="script.js"></script>
 </body>
 </html>
