@@ -23,6 +23,7 @@ createBtn.addEventListener("click", () => {
 
     const itemsTextbox = document.createElement("input");
     itemsTextbox.type = "number";
+    itemsTextbox.value = ""
     itemsTextbox.placeholder = `add the price of item`;
     itemsTextbox.id = "priceTextbox" + i;
 
@@ -45,6 +46,7 @@ createBtn.addEventListener("click", () => {
     sharePersonTextBox.type = "number";
     sharePersonTextBox.placeholder = `add the share for the item`;
     sharePersonTextBox.id = "sharePersonTextBox" + i;
+    sharePersonTextBox.value = ""
     sharePersonTextBox.hidden = true
 
     commonItemsPersonContainer.append(commonItemsPersonName, sharePersonTextBox)
@@ -58,6 +60,7 @@ createBtn.addEventListener("click", () => {
   commonItemPrice.type = "number";
   commonItemPrice.placeholder = `add price of the item`;
   commonItemPrice.id = "commonItemPrice";
+  commonItemPrice.value = ""
   commonItemPrice.hidden = true
 
   const commonItemsBtn = document.createElement("button");
@@ -101,24 +104,26 @@ createBtn.addEventListener("click", () => {
   }
 
   commonItemsBtn.addEventListener("click", () => {
-    const commonItemPrice = parseInt(document.getElementById("commonItemPrice").value);
+    const commonItemPrice = document.getElementById("commonItemPrice").value;
     const listOfShares = []
     for (let i = 0; i < numPersons; i++) {
       listOfShares.push(document.getElementById("sharePersonTextBox" + i).value)
     }
     totalShare = listOfShares.reduce((partialSum, a) => partialSum + Number(a), 0)
     const commonItemPricePerPerson = listOfShares.map(element => element * (commonItemPrice/totalShare));
-    for (let i = 0; i < numPersons; i++) {
-      person["btnPerson" + i].push(commonItemPricePerPerson[i]);
-      document.getElementById("paraPerson" + i).innerHTML = "Total: " + person[
-        "btnPerson" + i
-      ].reduce((partialSum, a) => partialSum + Number(a), 0);
-      var listPersonItemsValue = ""
+    if (totalShare !== 0) {
       for (let i = 0; i < numPersons; i++) {
-        var temp = document.getElementById("personName"+i).value + " >>> " + person["btnPerson" + i] + "<br><hr>"
-        listPersonItemsValue += temp
+        person["btnPerson" + i].push(commonItemPricePerPerson[i]);
+        document.getElementById("paraPerson" + i).innerHTML = "Total: " + person[
+          "btnPerson" + i
+        ].reduce((partialSum, a) => partialSum + Number(a), 0);
+        var listPersonItemsValue = ""
+        for (let i = 0; i < numPersons; i++) {
+          var temp = document.getElementById("personName"+i).value + " >>> " + person["btnPerson" + i] + "<br><hr>"
+          listPersonItemsValue += temp
+        }
+        listPersonItems.innerHTML = listPersonItemsValue
       }
-      listPersonItems.innerHTML = listPersonItemsValue
     }
     document.getElementById("commonItemPrice").value = ""
   });
