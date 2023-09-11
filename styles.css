@@ -121,10 +121,45 @@ hr {
     border-top: 1px solid #ccc;
 }
 
-/* Responsive layout adjustments */
-@media (max-width: 600px) {
+@media (max-width: 768px) {
+    /* Reset styles for larger screens */
+    h1,
+    .person-container span,
+    #commonItemsContainer,
+    #commonItemsPersonsContainer,
+    #commonItemsPriceContainer {
+        font-size: initial;
+        display: initial;
+        width: initial;
+        margin: initial;
+        padding: initial;
+    }
+
     input[type="number"]#sharePersonTextBox,
     input[type="number"]#commonItemPrice {
+        margin-top: initial;
+    }
+
+    /* Adjust styles for smaller screens */
+    h1 {
+        font-size: 24px;
+    }
+
+    .person-container span {
+        font-size: 14px;
+    }
+
+    #commonItemsContainer {
+        flex-direction: column;
+    }
+
+    #commonItemsPersonsContainer {
         width: 100%;
     }
+
+    #commonItemsPriceContainer {
+        flex-direction: column;
+    }
+    
+    /* Add new styles for smaller screens as needed */
 }
